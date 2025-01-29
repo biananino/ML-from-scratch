@@ -1,7 +1,7 @@
 import numpy as np
 from abc import ABC, abstractmethod
 
-class loss(ABC):  
+class Loss(ABC):  
     
     @abstractmethod
     def __call__(self,y_true,y_pred):
@@ -11,7 +11,7 @@ class loss(ABC):
     def gradient(self,y_true,y_pred):
         pass
     
-class mse(loss):
+class Mse(Loss):
     def __call__(self,y_true,y_pred):
         RSS = (1/2)*(y_true - y_pred)**2
         mse = np.mean(RSS)
@@ -22,7 +22,7 @@ class mse(loss):
         gradient = -(y_true - y_pred)/num_inputs
         return gradient
 
-class SparseCrossEntropy_withlogits(loss):
+class SparseCrossEntropy_withlogits(Loss):
     def __call__(self,y_true,y_pred):
         num_inputs = y_true.shape[0]
         max_score = np.max(y_pred, axis = 1, keepdims = True)

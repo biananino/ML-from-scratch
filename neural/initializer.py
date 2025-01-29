@@ -1,16 +1,16 @@
 import numpy as np
 from abc import ABC, abstractmethod
 
-class initializer(ABC):
+class Initializer(ABC):
     @abstractmethod
     def __call__(self,shape,seed = None):
         pass
     
-class zeroInitializer(initializer):
+class ZeroInitializer(Initializer):
         def __call__(self,shape,seed = None):
             return np.zeros(shape)
 
-class normalInitializer(initializer):
+class NormalInitializer(Initializer):
     def __init__(self,scale = 1e-3):
         self.scale = scale
         

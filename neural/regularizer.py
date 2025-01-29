@@ -1,7 +1,7 @@
 import numpy as np
 from abc import ABC, abstractmethod
 
-class regularizer(ABC):
+class Regularizer(ABC):
     @abstractmethod
     def __init__(self):
         pass
@@ -14,7 +14,7 @@ class regularizer(ABC):
     def gradient(self,W):
         pass
     
-class nullRegularizer(regularizer):
+class NullRegularizer(Regularizer):
     def __init__(self):
         pass
     
@@ -24,7 +24,7 @@ class nullRegularizer(regularizer):
     def gradient(self,W):
         return 0
 
-class L1(regularizer):
+class L1(Regularizer):
     def __init__(self,alpha):
         self.alpha = alpha
         
@@ -34,7 +34,7 @@ class L1(regularizer):
     def gradient(self,W):
         return np.sign(W)*self.alpha
     
-class L2(regularizer):
+class L2(Regularizer):
     def __init__(self,alpha):
         self.alpha = alpha
         
@@ -44,7 +44,7 @@ class L2(regularizer):
     def gradient(self,W):
         return W*self.alpha
     
-class L1L2(regularizer):
+class L1L2(Regularizer):
     def __init__(self,alpha_l1,alpha_l2):
         self.l1 = L1(alpha_l1)
         self.l2 = L2(alpha_l2)

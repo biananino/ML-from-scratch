@@ -1,12 +1,12 @@
 import numpy as np
 from abc import ABC, abstractmethod
 
-class solver(ABC):
+class Solver(ABC):
     @abstractmethod
     def train(self,model,training_data,validation_data = None):
         pass
 
-class miniBatchSGD(solver):
+class MiniBatchSGD(Solver):
     def __init__(self,batch_size = 256,learning_rate = 1e-5):
         self.batch_size = batch_size
         self.learning_rate = learning_rate
@@ -25,10 +25,9 @@ class miniBatchSGD(solver):
                 weight_grad = gradients[1]
                 bias_grad = gradients[2]
                 layer.weights += -self.learning_rate*weight_grad
-                layer.bias += -self.learning_rate*bias_grad   
-                
-
-class gradientDescent(solver):
+                layer.bias += -self.learning_rate*bias_grad
+     
+class GradientDescent(Solver):
     def __init__(self,learning_rate = 1e-5):
         self.learning_rate = learning_rate
         

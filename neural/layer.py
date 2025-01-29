@@ -5,7 +5,7 @@ from .activation import *
 from .regularizer import *
 from .initializer import *
 
-class layer(ABC):
+class Layer(ABC):
     @abstractmethod
     def __init__(self,size,activation,regularizer):
         pass
@@ -17,17 +17,17 @@ class layer(ABC):
     def _forward_pass(self,X):
         pass
 
-class inputLayer(layer):
+class InputLayer(Layer):
     def __init__(self,size):
         self.size = size
         
     def _forward_pass(self,X):
         return X    
         
-class denseLayer(layer):
-    def __init__(self, size, activation = linear(), weight_regularizer = nullRegularizer(), 
-                 bias_regularizer = nullRegularizer(), weight_initializer = normalInitializer(),
-                 bias_initializer = zeroInitializer()):        
+class DenseLayer(Layer):
+    def __init__(self, size, activation = Linear(), weight_regularizer = NullRegularizer(), 
+                 bias_regularizer = NullRegularizer(), weight_initializer = NormalInitializer(),
+                 bias_initializer = ZeroInitializer()):        
         self.size = size
         self.activation = activation
         self.bias_regularizer = bias_regularizer

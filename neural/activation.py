@@ -1,7 +1,7 @@
 import numpy as np
 from abc import ABC, abstractmethod
 
-class activation(ABC):
+class Activation(ABC):
     @abstractmethod
     def __call__(self,X):
         pass
@@ -10,7 +10,7 @@ class activation(ABC):
     def gradient(self,upGrad,X):    
         pass
     
-class linear(activation):
+class Linear(Activation):
     def __call__(self,X):
         return X
     
@@ -18,14 +18,14 @@ class linear(activation):
         return upGrad
     
     
-class relu(activation):
+class Relu(Activation):
     def __call__(self,X):
         return np.maximum(0,X)
     
     def gradient(self,upGrad,X):
         return np.where(X > 0, upGrad, 0)
     
-class leakyRelu(activation):
+class LeakyRelu(Activation):
     def __init__(self,alpha = 0.001):
         self.alpha = alpha
         

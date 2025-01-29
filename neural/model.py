@@ -6,7 +6,7 @@ from .initializer import *
 from .regularizer import *
 from .loss import *
 
-class model(ABC):
+class Model(ABC):
     @abstractmethod
     def __init__(self):
         pass
@@ -25,7 +25,7 @@ class model(ABC):
         pass
     
     
-class sequentialModel(model):
+class SequentialModel(Model):
     def __init__(self):
         self._layers = []
         self._loss = None
